@@ -61,7 +61,7 @@ public class Main {
 		System.out.println(student.getId()+" Student's English Score: "+student.getEnglishScore());
 		System.out.println("-------------------------------------------");
 		System.out.println("["+student.getId()+"] Student's Score Status");
-		System.out.println("Java "+student.getJavaScore()+", SQL "+student.getSqlScore()+", Math "+student.getMathScore()+", English "+student.getEnglishScore());
+		System.out.println("Java "+student.getJavaScore()+", SQL "+student.getSqlScore()+", Math. "+student.getMathScore()+", English "+student.getEnglishScore());
 		System.out.println("-------------------------------------------");
 		System.out.println("Avg.: "+student.getAvg()+", Rank: "+student.getRank());
 		System.out.println("-------------------------------------------");

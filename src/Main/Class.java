@@ -47,7 +47,6 @@ public class Class {
 			mathAvg += (double) students.get(i).getMathScore();
 			englishAvg += (double) students.get(i).getEnglishScore();
 			students.get(i).setRank(i+1);
-			System.out.println(students.get(i).getRank());
 		}
 		javaAvg = (double) javaAvg/students.size();
 		sqlAvg = (double) sqlAvg/students.size(); 
