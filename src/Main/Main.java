@@ -6,29 +6,37 @@ public class Main {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int numStudents = 0; //variable for storing the number of students entered by the user
+		int numStudents = -1; //variable for storing the number of students entered by the user
 		
 		Student student; //Student object for storing student data before adding the object to the arraylist
 		Class class1 = new Class(); //Class object for storing students data and class data
 		
 		//InputDialog for number of students
-		numStudents = onlyNumbers(JOptionPane.showInputDialog("How many students are in this class?"));
+		do{
+			String input = JOptionPane.showInputDialog("How many students are in this class?");
+			if(input.matches("^\\d*?")) {
+				numStudents = Integer.parseInt(input);
+			}else {
+				JOptionPane.showMessageDialog(null, "Invalid input, please type numbers greater than zero only");
+			}
+		}while(numStudents <= 0);
 		
 		System.out.println("How many students are in this class? : "+numStudents);
 		
 		//With the number of students we can establish a loop that allows the user to enter students grade in order one by one
 		for(int i = 1; i <= numStudents ; i++) {
-			int javaScore = onlyNumbers(JOptionPane.showInputDialog("Insert Java score for student "+i));
-			int sqlScore = onlyNumbers(JOptionPane.showInputDialog("Insert SQL score for student "+i));
-			int mathScore = onlyNumbers(JOptionPane.showInputDialog("Insert Math score for student "+i));
-			int engScore = onlyNumbers(JOptionPane.showInputDialog("Insert English score for student "+i));
+			int javaScore = onlyNumbers("Insert Java score for student "+i);
+			int sqlScore = onlyNumbers("Insert SQL score for student "+i);
+			int mathScore = onlyNumbers("Insert Math score for student "+i);
+			int engScore = onlyNumbers("Insert English score for student "+i);
+			int drawingScore = onlyNumbers("Insert Drawing score for student "+i);
 			String id = ""; //variable for storing student's ID
 			if(i<10) { //With this if we can format the student's ID
 				id = "STD0"+i;
 			}else {
 				id = "STD"+i;
 			}
-			student = new Student(id,javaScore,sqlScore,mathScore,engScore); //We declare the student object with all the variables
+			student = new Student(id,javaScore,sqlScore,mathScore,engScore,drawingScore); //We declare the student object with all the variables
 			class1.addStudent(student); //We add the student object to the Students arraylist
 			student.setRank(class1.setRanking(id)); //We set the rank for the student using the setRanking function from Class class
 			printStudentStatus(student); //We then print the student status
@@ -41,15 +49,18 @@ public class Main {
 	
 	//This function verifies the input data is numbers only
 	//The verification is made with regular expressions 
-	public static Integer onlyNumbers(String input) {
-		int inputNum = 0;
-		do {
-			if(input.matches("^\\d*$")) {
+	public static Integer onlyNumbers(String question) {
+		int inputNum = -1;
+		String input = JOptionPane.showInputDialog(question);
+		while(inputNum < 0){
+			if(input.matches("[0-9]|[1-9][0-9]|100")) {
 				inputNum = Integer.parseInt(input);
 			}else {
-				JOptionPane.showMessageDialog(null, "Invalid input, please type numbers onnly");
+				JOptionPane.showMessageDialog(null, "Invalid input, please type numbers between 0 and 100");
+				input = JOptionPane.showInputDialog(question);
 			}
-		}while(!input.matches("^\\d*$"));
+		};
+		
 		return inputNum;
 	}
 	
@@ -59,9 +70,10 @@ public class Main {
 		System.out.println(student.getId()+" Student's SQL Score: "+student.getSqlScore());
 		System.out.println(student.getId()+" Student's Math. Score: "+student.getMathScore());
 		System.out.println(student.getId()+" Student's English Score: "+student.getEnglishScore());
+		System.out.println(student.getId()+" Student's Drawing Score: "+student.getDrawingScore());
 		System.out.println("-------------------------------------------");
 		System.out.println("["+student.getId()+"] Student's Score Status");
-		System.out.println("Java "+student.getJavaScore()+", SQL "+student.getSqlScore()+", Math. "+student.getMathScore()+", English "+student.getEnglishScore());
+		System.out.println("Java "+student.getJavaScore()+", SQL "+student.getSqlScore()+", Math. "+student.getMathScore()+", English "+student.getEnglishScore()+", Drawing "+student.getDrawingScore());
 		System.out.println("-------------------------------------------");
 		System.out.println("Avg.: "+student.getAvg()+", Rank: "+student.getRank());
 		System.out.println("-------------------------------------------");
@@ -81,6 +93,7 @@ public class Main {
 		System.out.println("SQL Class Avg.: "+class1.getSqlAvg());
 		System.out.println("Math. Class Avg.: "+class1.getMathAvg());
 		System.out.println("English Class Avg.: "+class1.getEnglishAvg());
+		System.out.println("Drawing Class Avg.: "+class1.getDrawingAvg());		
 		System.out.println("===============================");
 	}
 
