@@ -10,6 +10,7 @@ public class Class {
 	private double sqlAvg = 0d; //Class' average grade in SQL subject
 	private double mathAvg = 0d; //Class' average grade in Mathematics subject
 	private double englishAvg = 0d; //Class' average grade in English subject
+	private double drawingAvg = 0d;
 	
 	public Class() {} //Empty class constructor
 	
@@ -38,6 +39,10 @@ public class Class {
 		return englishAvg;
 	}
 	
+	public double getDrawingAvg() {
+		return drawingAvg;
+	}
+	
 	//This function loops through the final students arraylist, calculates the average
 	//grade for each subject and updates the rank variable for each student
 	public void setClassAvg() {
@@ -46,12 +51,14 @@ public class Class {
 			sqlAvg += (double) students.get(i).getSqlScore();
 			mathAvg += (double) students.get(i).getMathScore();
 			englishAvg += (double) students.get(i).getEnglishScore();
+			drawingAvg += (double) students.get(i).getDrawingScore();
 			students.get(i).setRank(i+1);
 		}
 		javaAvg = (double) javaAvg/students.size();
 		sqlAvg = (double) sqlAvg/students.size(); 
 		mathAvg = (double) mathAvg/students.size(); 
-		englishAvg = (double) englishAvg/students.size();  
+		englishAvg = (double) englishAvg/students.size();
+		drawingAvg = (double) drawingAvg/students.size();
 	}
 	
 	//This function sorts students arraylist descending by average grade
