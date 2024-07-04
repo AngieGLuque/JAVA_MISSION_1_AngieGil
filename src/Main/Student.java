@@ -7,19 +7,21 @@ public class Student {
 	private int sqlScore; //Student's grade in SQL class
 	private int mathScore; //Student's grade in Mathematics class
 	private int englishScore; //Student's grade in English class
+	private int drawingScore;
 	private Double avg; //Student's grades average
 	private int rank = 0; //Student's ranking
 	
 	public Student() {} //Class empty constructor
 	
 	//Class constructor with obligatory parameters
-	public Student(String id, int javaScore, int sqlScore, int mathScore, int englishScore) {
+	public Student(String id, int javaScore, int sqlScore, int mathScore, int englishScore, int drawingScore) {
 		this.id = id;
 		this.javaScore = javaScore;
 		this.sqlScore = sqlScore;
 		this.mathScore = mathScore;
 		this.englishScore = englishScore;
-		this.avg =(double) (javaScore+sqlScore+mathScore+englishScore)/4;
+		this.drawingScore = drawingScore;
+		this.avg =(double) (javaScore+sqlScore+mathScore+englishScore+drawingScore)/5;
 	}
 	
 	//Getters and setters for each variable
@@ -63,6 +65,14 @@ public class Student {
 		this.englishScore = englishScore;
 	}
 	
+	public int getDrawingScore() {
+		return drawingScore;
+	}
+
+	public void setDrawingScore(int drawingScore) {
+		this.drawingScore = drawingScore;
+	}
+
 	//Average variable does not have a set function
 	public Double getAvg() {
 		return avg;
